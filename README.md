@@ -87,12 +87,6 @@ dropped from 150k tokens to 2k by keeping intermediate results out of context.
 Design details, the architecture, and the roadmap live in
 [docs/DESIGN.md](docs/DESIGN.md).
 
-## Status
-
-Design phase. No code yet. The design doc is the current deliverable, and
-design feedback is the most useful contribution right now. Open an issue if
-you see a flaw or a missing use case.
-
 ## License
 
 MIT.
