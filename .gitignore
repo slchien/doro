@@ -1,0 +1,14 @@
+# Rust. Cargo.lock stays tracked because doro ships a binary.
+/target
+
+# Site
+site/node_modules
+site/dist
+
+# Local tooling
+.claude/
+
+# Editors and OS
+.DS_Store
+.idea
+.vscode

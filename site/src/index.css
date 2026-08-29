@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  font-size: 17px;
+}
+
+body {
+  @apply bg-zinc-950 font-sans text-zinc-50 antialiased;
+}
