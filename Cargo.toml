@@ -1,0 +1,44 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/doro-core",
+    "crates/doro-policy",
+    "crates/doro-vault",
+    "crates/doro-mcp",
+    "crates/doro-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["Doro Contributors"]
+repository = "https://github.com/slchien/doro"
+
+[workspace.dependencies]
+# Async runtime & errors
+tokio = { version = "1.40", features = ["full"] }
+thiserror = "2.0"
+anyhow = "1.0"
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# CLI & Logging
+clap = { version = "4.5", features = ["derive", "env"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Policy (#10) & Security (#11)
+wildmatch = "2.3"
+keyring = "3.6"
+zeroize = { version = "1.8", features = ["zeroize_derive"] }
+secrecy = { version = "0.10", features = ["serde"] }
+
+# Internal workspace crates
+doro-core = { path = "crates/doro-core" }
+doro-policy = { path = "crates/doro-policy" }
+doro-vault = { path = "crates/doro-vault" }
+doro-mcp = { path = "crates/doro-mcp" }
