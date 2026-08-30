@@ -1,4 +1,4 @@
-# doro
+# Doro
 
 Doro is an AI agent router for MCP. Give your AI Agent MCP access to tools such as Notion, Slack, Jira, etc. 
 and Doro will intelligently route your agent to them, saving token cost by finding the most efficient route possible.
