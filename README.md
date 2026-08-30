@@ -10,7 +10,7 @@ We aim to reduce a model's context window when searching through tools by upward
 ```bash
 bun install -g doro
 ```
-Or try npm install -g doro
+Or try npm, brew, etc.!
 
 ## Use
 
