@@ -34,7 +34,7 @@ Your agent now sees one Doro tool instead of the full set from Notion, Slack, an
 
 ## Use
 
-Doro acts as an AI agent harness -> point any model at it (Anthropic, OpenAI, Kimi) and watch it work. No other work is needed beyond configuring your underlying MCP servers as shown above.
+Doro acts as an AI agent router -> point any model at it (Anthropic, OpenAI, Kimi) and watch it work. No other work is needed beyond configuring your underlying MCP servers as shown above.
 
 ## How it works
 
