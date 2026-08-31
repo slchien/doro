@@ -32,6 +32,10 @@ impl ToolCard {
             self.parameters.join(" ")
         )
     }
+
+    pub fn qualified_name(&self) -> String {
+        format!("{}.{}", self.server, self.name)
+    }
 }
 
 #[cfg(test)]
@@ -61,5 +65,11 @@ mod tests {
             vec!["test".to_string()],
         );
         assert_eq!(card.searchable_text(), "test test test test");
+    }
+
+    #[test]
+    fn test_qualified_name() {
+        let card = ToolCard::new("create_issue", "github", "desc", Vec::new());
+        assert_eq!(card.qualified_name(), "github.create_issue");
     }
 }

@@ -21,7 +21,11 @@ pub enum Commands {
         #[arg(short, long)]
         profile: Option<String>,
     },
-    Profiles,
+    /// Manage profiles and tool policies
+    Profiles {
+        #[arg(short, long, default_value = "doro.json")]
+        config: String,
+    },
     Vault,
 }
 
@@ -36,8 +40,27 @@ async fn main() -> anyhow::Result<()> {
             tracing::info!(config = %config, profile = ?profile, "Starting doro router");
             println!("Doro router starting with config: {}", config);
         }
-        Some(Commands::Profiles) => {
-            println!("Doro profiles management");
+        Some(Commands::Profiles { config }) => {
+            let contents = std::fs::read_to_string(&config)?;
+            let profiles = doro_policy::ProfileSet::from_config_json(&contents)?;
+
+            let mut names: Vec<&str> = profiles.names().collect();
+            names.sort();
+
+            if names.is_empty() {
+                println!("No profiles defined in {}", config);
+            } else {
+                println!("Profiles in {}:", config);
+                for name in names {
+                    let profile = profiles.get(name)?;
+                    println!(
+                        "  {} (default: {:?}, {} rule(s))",
+                        name,
+                        profile.default_action,
+                        profile.rules.len()
+                    );
+                }
+            }
         }
         Some(Commands::Vault) => {
             println!("Doro vault management");
@@ -80,6 +103,17 @@ mod tests {
                 assert_eq!(profile, Some("ci".to_string()));
             }
             _ => panic!("Expected Serve command"),
+        }
+    }
+
+    #[test]
+    fn test_cli_parse_profiles() {
+        let cli = Cli::try_parse_from(["doro", "profiles", "--config", "custom.json"]).unwrap();
+        match cli.command {
+            Some(Commands::Profiles { config }) => {
+                assert_eq!(config, "custom.json");
+            }
+            _ => panic!("Expected Profiles command"),
         }
     }
 }
